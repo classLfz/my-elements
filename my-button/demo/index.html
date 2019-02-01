@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>My Elements</title>
-  <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <title><my-button></title>
+  <!-- <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script> -->
   <script type="module">
     import '@polymer/iron-demo-helpers/demo-snippet.js';
   </script>
@@ -29,12 +29,14 @@
     <demo-snippet>
       <template>
         <my-button>default button</my-button>
+        <my-button disabled>disabled button</my-button>
         <my-button type="primary">primary button</my-button>
         <my-button type="danger">danger button</my-button>
         <my-button type="success">success button</my-button>
         <my-button ghost>ghost button</my-button>
         <my-button type="danger" shape="circle">circle button</my-button>
         <my-button size="small">small button</my-button>
+        <my-button size="small" shape="circle">small circle button</my-button>
         <my-button size="large" shape="circle">large button</my-button>
       </template>
     </demo-snippet>

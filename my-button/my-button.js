@@ -10,7 +10,9 @@ class MyButton extends LitElement {
 
       shape: { type: String, reflect: true },
 
-      size: { type: String, reflect: true }
+      size: { type: String, reflect: true },
+
+      disabled: { type: Boolean, reflect: true },
     };
   }
 
@@ -27,6 +29,7 @@ class MyButton extends LitElement {
     if (name === 'ghost') this._handleGhostChanged(newVal);
     if (name === 'shape') this._handleShapeChanged(newVal);
     if (name === 'size') this._handleSizeChanged(newVal);
+    if (name === 'disabled') this._handleDisabledChanged(newVal);
     super.attributeChangedCallback(name, oldVal, newVal);
   }
 
@@ -58,11 +61,29 @@ class MyButton extends LitElement {
     }
   }
 
+  _handleDisabledChanged(newVal) {
+    if (newVal || newVal === '') {
+      this.addEventListener('click', this._disabledClickEvent, true);
+      return
+    }
+    this.removeEventListener('click', this._disabledClickEvent, true);
+  }
+
+  _disabledClickEvent(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
   render() {
     return html`
       <style>
         :host[hidden] {
           display: none;
+        }
+        :host([disabled]) button {
+          border-color: #BDBDBD!important;
+          color: #BDBDBD!important;
+          cursor: not-allowed!important;
         }
         :host {
           display: inline-block;
@@ -70,12 +91,11 @@ class MyButton extends LitElement {
         button {
           padding: 8px 16px;
           border-radius: 4px;
-          color: black;
           outline: none;
           cursor: pointer;
-          border: 1px solid #E0E0E0;
-          background-color: #E0E0E0;
-          color: black;
+          border: 1px solid #616161;
+          background-color: white;
+          color: #616161;
         }
         button:hover {
           background: none;
@@ -93,23 +113,23 @@ class MyButton extends LitElement {
           color: white;
         }
         .danger-type {
-          background-color: #E53935;
+          background-color: white;
           border: 1px solid #E53935;
-          color: white;
+          color: #E53935;
         }
         .danger-type:hover {
-          background-color: #E57373;
-          border-color: #E57373;
+          background-color: #E53935;
+          border-color: #E53935;
           color: white;
         }
         .success-type {
-          background-color: #43A047;
+          background-color: white;
           border: 1px solid #43A047;
-          color: white;
+          color: #43A047;
         }
         .success-type:hover {
-          background-color: #81C784;
-          border-color: #81C784;
+          background-color: #43A047;
+          border-color: #43A047;
           color: white;
         }
         .ghost {
@@ -125,20 +145,23 @@ class MyButton extends LitElement {
           border-radius: 18px;
         }
         .shape-circle-default {
-          border-radius: 20px;
+          border-radius: 22px;
         }
         .shape-circle-large {
           border-radius: 26px;
         }
         .small-size {
           font-size: 12px;
+          line-height: 12px;
           padding: 4px 8px;
         }
         .default-size {
           font-size: 14px;
+          line-height: 14px;
         }
         .large-size {
           font-size: 18px;
+          line-height: 18px;
         }
       </style>
 

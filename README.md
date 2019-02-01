@@ -11,3 +11,15 @@ $ npm install my-elements -S
 ## elements
 
 - [my-button](./my-button)
+
+## develop
+
+recommend to use `polymer-cli` & `yarn` to develop this project:
+
+```sh
+$ npm install --global polymer-cli yarn
+
+$ yarn
+
+$ polymer serve
+```

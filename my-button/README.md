@@ -18,6 +18,7 @@ import 'my-elements/my-button/my-button.js';
 
 ```html
 <my-button>default button</my-button>
+<my-button disabled>disabled button</my-button>
 <my-button type="primary">primary button</my-button>
 <my-button type="danger">danger button</my-button>
 <my-button type="success">success button</my-button>
@@ -36,3 +37,5 @@ import 'my-elements/my-button/my-button.js';
 - size[String]: different size, option values: `small`, `default`, `large`, default value is `default`;
 
 - shape[String]: handle the border radius shape, option values: `circle`;
+
+- disabled[Boolean]: disable button click;
